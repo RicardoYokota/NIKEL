@@ -10,7 +10,7 @@ document.getElementById("button-logout").addEventListener("click", logout);
 
 
 //ADICIONAR LANÇAMENTO
-document.getElementById("transactions-form").addEventListener("submit", function(e) {
+document.getElementById("transactions-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
     const value = parseFloat(document.getElementById("value-input").value);
@@ -28,7 +28,7 @@ document.getElementById("transactions-form").addEventListener("submit", function
 
     getTransactions();
 
-        
+
     alert("Lançamento realizado com sucesso.");
 
 });
@@ -36,19 +36,19 @@ document.getElementById("transactions-form").addEventListener("submit", function
 checkLogged();
 
 function checkLogged() {
-    if(session) {
+    if (session) {
         sessionStorage.setItem("logged", session);
         logged = session;
     }
 
-    if(!logged) {     
+    if (!logged) {
         window.location.href = "index.html";
         return;
     }
 
 
     const dataUser = localStorage.getItem(logged);
-    if(dataUser) {
+    if (dataUser) {
         data = JSON.parse(dataUser);
     }
 
@@ -67,11 +67,11 @@ function getTransactions() {
     const transactions = data.transactions;
     let transactionsHtml = ``;
 
-    if(transactions.length) {
+    if (transactions.length) {
         transactions.forEach((item) => {
             let type = "Entrada";
 
-            if(item.type === "2") {
+            if (item.type === "2") {
                 type = "Saída";
             }
 
