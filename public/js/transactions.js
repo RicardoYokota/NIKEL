@@ -92,4 +92,4 @@ function getTransactions() {
 
 function saveData(data) {
     localStorage.setItem(data.login, JSON.stringify(data));
-}; 
+};  
