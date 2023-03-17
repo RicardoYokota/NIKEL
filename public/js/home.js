@@ -7,13 +7,13 @@ let data = {
 };
 
 document.getElementById("button-logout").addEventListener("click", logout);
-document.getElementById("transactions-button").addEventListener("click", function() {
+document.getElementById("transactions-button").addEventListener("click", function () {
     window.location.href = "transactions.html"
 })
 
 
 //ADICIONAR LANÇAMENTO
-document.getElementById("transactions-form").addEventListener("submit", function(e) {
+document.getElementById("transactions-form").addEventListener("submit", function (e) {
     e.preventDefault();
 
     const value = parseFloat(document.getElementById("value-input").value);
@@ -32,7 +32,7 @@ document.getElementById("transactions-form").addEventListener("submit", function
     getCashIn();
     getCashOut();
     getTotal();
-    
+
     alert("Lançamento realizado com sucesso.");
 
 });
@@ -40,18 +40,18 @@ document.getElementById("transactions-form").addEventListener("submit", function
 checkLogged();
 
 function checkLogged() {
-    if(session) {
+    if (session) {
         sessionStorage.setItem("logged", session);
         logged = session;
     }
 
-    if(!logged) {     
+    if (!logged) {
         window.location.href = "index.html";
     }
 
 
     const dataUser = localStorage.getItem(logged);
-    if(dataUser) {
+    if (dataUser) {
         data = JSON.parse(dataUser);
     }
 
@@ -70,20 +70,20 @@ function logout() {
 function getCashIn() {
     const transactions = data.transactions;
 
-    const cashIn = transactions.filter((item) => item.type ==="1");
+    const cashIn = transactions.filter((item) => item.type === "1");
 
-    if(cashIn.length) {
+    if (cashIn.length) {
         let cashInHtml = ``;
         let limit = 0;
 
-        if(cashIn.length > 5) {
+        if (cashIn.length > 5) {
             limit = 5;
         } else {
             limit = cashIn.length;
         }
 
         for (let index = 0; index < limit; index++) {
-            cashInHtml +=`
+            cashInHtml += `
             <div class="row mb-4">
                 <div class="col-12">
                     <h3 class="fs-2">R$ ${cashIn[index].value.toFixed(2)}</h3> 
@@ -99,33 +99,33 @@ function getCashIn() {
                     </div>
                 </div>
             </div>
-            `            
+            `
         }
 
         document.getElementById("cash-in-list").innerHTML = cashInHtml;
 
     }
 
-   
+
 }
 
 function getCashOut() {
     const transactions = data.transactions;
 
-    const cashIn = transactions.filter((item) => item.type ==="2");
+    const cashIn = transactions.filter((item) => item.type === "2");
 
-    if(cashIn.length) {
+    if (cashIn.length) {
         let cashInHtml = ``;
         let limit = 0;
 
-        if(cashIn.length > 5) {
+        if (cashIn.length > 5) {
             limit = 5;
         } else {
             limit = cashIn.length;
         }
 
         for (let index = 0; index < limit; index++) {
-            cashInHtml +=`
+            cashInHtml += `
             <div class="row mb-4">
                 <div class="col-12">
                     <h3 class="fs-2">R$ ${cashIn[index].value.toFixed(2)}</h3> 
@@ -141,14 +141,14 @@ function getCashOut() {
                     </div>
                 </div>
             </div>
-            `            
+            `
         }
 
         document.getElementById("cash-out-list").innerHTML = cashInHtml;
 
     }
 
-   
+
 }
 
 function getTotal() {
@@ -156,7 +156,7 @@ function getTotal() {
     let total = 0;
 
     transactions.forEach((item) => {
-        if(item.type === "1") {
+        if (item.type === "1") {
             total += item.value;
         } else {
             total -= item.value;
