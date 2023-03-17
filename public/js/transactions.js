@@ -86,7 +86,7 @@ function getTransactions() {
         })
     }
 
-    document.getElementById("transaction-list").innerHTML = transactionsHtml;
+    document.getElementById("transactions-list").innerHTML = transactionsHtml;
 
 }
 
