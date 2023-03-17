@@ -62,7 +62,7 @@ function imprimirPessoas() {
 
         console.log("Trabalho:");
         console.log(item.trabalho);
-       
+
     })
 }
 
